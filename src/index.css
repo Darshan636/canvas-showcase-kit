@@ -2,41 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Artist Portfolio Design System - Minimalist & Clean */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Warm neutral palette for gallery aesthetic */
+    --background: 32 20% 98%;
+    --foreground: 30 8% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 35 15% 96%;
+    --card-foreground: 30 8% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 35 15% 96%;
+    --popover-foreground: 30 8% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 30 8% 15%;
+    --primary-foreground: 32 20% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 35 10% 90%;
+    --secondary-foreground: 30 8% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 35 10% 92%;
+    --muted-foreground: 30 6% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 38 25% 85%;
+    --accent-foreground: 30 8% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 32 20% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 35 8% 88%;
+    --input: 35 8% 90%;
+    --ring: 30 8% 15%;
 
-    --radius: 0.5rem;
+    --radius: 0.375rem;
+
+    /* Artist-specific design tokens */
+    --gallery-white: 32 20% 98%;
+    --warm-gray: 30 6% 45%;
+    --charcoal: 30 8% 15%;
+    --soft-border: 35 8% 88%;
+    --accent-warm: 38 25% 85%;
+    
+    /* Elegant shadows */
+    --shadow-soft: 0 2px 20px hsl(30 8% 15% / 0.08);
+    --shadow-medium: 0 4px 30px hsl(30 8% 15% / 0.12);
+    --shadow-strong: 0 8px 40px hsl(30 8% 15% / 0.16);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +109,53 @@ All colors MUST be HSL.
   }
 }
 
+/* Custom Gallery Styles */
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Typography hierarchy */
+  .heading-display {
+    @apply text-4xl md:text-6xl font-light tracking-tight leading-tight;
+    letter-spacing: -0.02em;
+  }
+  
+  .heading-section {
+    @apply text-2xl md:text-3xl font-light tracking-tight;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-elegant {
+    @apply text-base leading-relaxed;
+    line-height: 1.7;
+  }
+
+  /* Gallery grid animations */
+  .gallery-item {
+    @apply transition-all duration-300 ease-out;
+    transform: translateY(0);
+  }
+  
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+  }
+
+  /* Smooth page transitions */
+  .page-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: var(--transition-slow);
   }
 }
